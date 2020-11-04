@@ -8,6 +8,9 @@
   "rules": {
 
   },
+  "parserOptions": {
+    "sourceType": "module"
+  },
   "extends": ["eslint:recommended", "google"]
 
 }
