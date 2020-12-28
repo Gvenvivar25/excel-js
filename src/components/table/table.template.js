@@ -3,22 +3,29 @@ const CODES = {
   Z: 90,
 };
 
-function toCell() {
+function toCell(_, col) {
   return `
-  <div class="cell" contenteditable="true"></div>
+  <div class="cell" contenteditable="true" data-col="${col}"></div>
 `;
 }
 
-function toColumn(element) {
+function toColumn(element, index) {
   return `
-  <div class="column">${element}</div>
+  <div class="column" data-type="resizable" data-col="${index}">${element}
+    <div class="col-resize" data-resize="col"></div>
+  </div>
 `;
 }
 
 function createRow(index, content) {
+  const resizer = index ?
+    '<div class="row-resize" data-resize="row" >' +
+    '</div>': '';
   return `
-      <div class="row">
-        <div class="row-info">${index ? index : ''}</div>
+      <div class="row" data-type="resizable">
+        <div class="row-info">${index ? index : ''}
+        ${resizer}
+        </div>
         <div class="row-data">${content}</div>
       </div>
 `;
